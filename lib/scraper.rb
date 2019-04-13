@@ -8,20 +8,20 @@ class Scraper
   def self.scrape_recipe_index(index_url)
     doc = Nokogiri::HTML(open(index_url))
     cards = doc.css('article.fixed-recipe-card')
-    recipes = {}
-    #binding.pry
+    recipes = []
     cards.each do |card|
-      recipes[card.css('span.fixed-recipe-card__title-link').text.to_sym] = {
+      recipes << {
+        name: card.css('span.fixed-recipe-card__title-link').text.to_sym,
         url: card.css('a').attr('href').text,
         description: card.css('div.fixed-recipe-card__description').text,
         star_rating: card.css('div.fixed-recipe-card__ratings span').attr('data-ratingstars').text.to_f,
         reviews: card.css('span.fixed-recipe-card__reviews').children.attribute('number').text.to_i,
         img_url: card.css('img.fixed-recipe-card__img').attr('data-original-src').text,
-        cook: card.css('ul.cook-submitter-info li h4').text,
+        cook: card.css('ul.cook-submitter-info li h4').text.gsub(/^By\ /, ''),
         cook_url: card.css('div.fixed-recipe-card__profile a').attr('href').text
     }
     end
-    binding.pry
+    recipes
   end
 
   def self.scrape_recipe_page(recipe_url)
