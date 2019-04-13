@@ -48,3 +48,12 @@ most popular
 highest/lowest rated
 find or create to avoid duplicates
 make chef objects and scrape their profile page for photos, followers, recipes
+from profile page:
+* add a list of pictures
+* add a list of ingredients
+* add prep_time and cook_time
+* get nutritional facts, footnotes
+* print ingredients and cooking steps
+* grab most helpful positive and critical reviews
+* recipe object, cook object
+* see other recipe titles and urls by mac n cheese cooks

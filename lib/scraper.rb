@@ -27,6 +27,9 @@ class Scraper
   def self.scrape_recipe_page(recipe_url)
   end
 
+  def self.scrape_cook_page(cook_url)
+  end
+
 end
 
 
