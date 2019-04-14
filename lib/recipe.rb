@@ -10,7 +10,7 @@ class Recipe
 		@@all << self
 		# need self.cook=
 	end
-	
+
 	def self.create_from_collection(array)
 		array.each do |hash|
 			Recipe.new(hash)
@@ -27,7 +27,5 @@ class Recipe
 		end
 		# self might need to be returned here.
 	end
-
-
 
 end

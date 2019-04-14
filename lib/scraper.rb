@@ -2,7 +2,7 @@ require 'pry'
 require 'nokogiri'
 require 'open-uri'
 
-class Scraper
+class Cheezme::Scraper
 
 
   def self.scrape_recipe_index(index_url)
@@ -50,5 +50,5 @@ class Scraper
 end
 
 
-Scraper.scrape_recipe_index("https://www.allrecipes.com/recipes/509/main-dish/pasta/macaroni-and-cheese/")
-Scraper.scrape_recipe_page('https://www.allrecipes.com/recipe/223400/old-school-mac-n-cheese')
+Cheezme::Scraper.scrape_recipe_index("https://www.allrecipes.com/recipes/511/main-dish/pasta/macaroni-and-cheese/")
+Cheezme::Scraper.scrape_recipe_page('https://www.allrecipes.com/recipe/223400/old-school-mac-n-cheese')

@@ -41,19 +41,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Cheezme project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/big32mike/cheezme/blob/master/CODE_OF_CONDUCT.md).
-
-## features
-recipe of the day
-most popular
-highest/lowest rated
-find or create to avoid duplicates
-make chef objects and scrape their profile page for photos, followers, recipes
-from profile page:
-* add a list of pictures
-* add a list of ingredients
-* add prep_time and cook_time
-* get nutritional facts, footnotes
-* print ingredients and cooking steps
-* grab most helpful positive and critical reviews
-* recipe object, cook object
-* see other recipe titles and urls by mac n cheese cooks
