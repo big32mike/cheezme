@@ -16,7 +16,7 @@ class Scraper
         description: card.css('div.fixed-recipe-card__description').text,
         stars: card.css('div.fixed-recipe-card__ratings span').attr('data-ratingstars').text.to_f.round(2),
         reviews: card.css('span.fixed-recipe-card__reviews').children.attribute('number').text.to_i,
-        img_url: card.css('img.fixed-recipe-card__img').attr('data-original-src').text,
+        #img_url: card.css('img.fixed-recipe-card__img').attr('data-original-src').text,
         cook: card.css('ul.cook-submitter-info li h4').text.gsub(/^By\ /, ''),
         cook_url: card.css('div.fixed-recipe-card__profile a').attr('href').text
     }
@@ -25,6 +25,23 @@ class Scraper
   end
 
   def self.scrape_recipe_page(recipe_url)
+    attr_hash = {}
+    doc = Nokogiri::HTML(open(recipe_url))
+    attr_hash = {
+      prep_time: doc.css('li.prepTime__item')[1].attr('aria-label'),
+      cook_time: doc.css('li.prepTime__item')[2].attr('aria-label'),
+      ingredients: [],
+      steps: []
+    }
+
+    doc.css('li.checkList__line label').select {|i| i.attr('title') != nil}.each do |ing|
+      attr_hash[:ingredients] << ing.attr('title')
+    end
+
+    doc.css('span.recipe-directions__list--item').each do |step|
+      attr_hash[:steps] << step.text.strip
+    end
+    attr_hash
   end
 
   def self.scrape_cook_page(cook_url)
@@ -34,3 +51,4 @@ end
 
 
 Scraper.scrape_recipe_index("https://www.allrecipes.com/recipes/509/main-dish/pasta/macaroni-and-cheese/")
+Scraper.scrape_recipe_page('https://www.allrecipes.com/recipe/223400/old-school-mac-n-cheese')

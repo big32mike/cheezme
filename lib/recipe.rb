@@ -1,6 +1,6 @@
 class Recipe
 	attr_accessor :name, :url, :description, :stars, :reviews, \
-		:img_url, :cook, :cook_url
+		:ingredients, :cook, :cook_url
 	@@all = []
 
 	def initialize(attr_hash)
@@ -8,6 +8,7 @@ class Recipe
 			self.send("#{key}=", value)
 		end
 		@@all << self
+		# need self.cook=
 	end
 	
 	def self.create_from_collection(array)
@@ -18,6 +19,13 @@ class Recipe
 
 	def self.all
 		@@all
+	end
+
+	def extend_attributes(attr_hash)
+		attr_hash.each do |key, value|
+			self.send("#{key}=", value)
+		end
+		# self might need to be returned here.
 	end
 
 
