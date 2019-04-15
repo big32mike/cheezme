@@ -27,15 +27,12 @@ class Cheezme::Scraper
     attr_hash = {}
     doc = Nokogiri::HTML(open(recipe_url))
     prep_info = doc.css('li.prepTime__item')
-    #binding.pry
     if prep_info[1].respond_to? :attr
       prep_time = prep_info[1].attr('aria-label')
       cook_time = prep_info[2].attr('aria-label')
     end
 
     attr_hash = {
-      #prep_time: doc.css('li.prepTime__item')[1].attr('aria-label'),
-      #cook_time: doc.css('li.prepTime__item')[2].attr('aria-label'),
       prep_time: prep_time,
       cook_time: cook_time,
       ingredients: [],

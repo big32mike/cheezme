@@ -29,7 +29,6 @@ class Cheezme::CLI
         end
         puts "\nYou've chosen #{recipe.name}.\n#{recipe.description}\n"
         puts "#{recipe.stars} stars\t#{recipe.reviews} reviews."
-
         recipe.print_ingredients_and_directions
       elsif input == 'list'
         list_recipes
