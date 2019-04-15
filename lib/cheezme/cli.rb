@@ -24,7 +24,7 @@ class Cheezme::CLI
       input = gets.downcase.strip
       if input.to_i > 0 and input.to_i <= @@all.size
         recipe = @@all[input.to_i - 1]
-        if recipe.ingredients.nil?
+        if recipe.ingredients.nil? or recipe.ingredients == []
           recipe.extend_attributes(Cheezme::Scraper.scrape_recipe_page(recipe.url))
         end
         puts "\nYou've chosen #{recipe.name}.\n#{recipe.description}\n"
