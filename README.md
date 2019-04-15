@@ -22,7 +22,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run Cheezme (I *know*), run `bin/cheezme` from the project directory. The app will return a list of recipes from the Macaroni and Cheese category page of Allrecipes.com.  
+
+When presented with the list, choose a recipe to get more information. To display the whole list again, type `list`, and type exit when you're done browsing.
 
 ## Development
 
