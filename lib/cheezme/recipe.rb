@@ -25,23 +25,23 @@ class Cheezme::Recipe
     attr_hash.each do |key, value|
       self.send("#{key}=", value)
     end
-    # no need to return self here
   end
 
   def print_ingredients_and_directions
-    puts "\nYou've chosen #{recipe.name}.\n#{recipe.description}\n"
-    puts "#{recipe.stars} stars\t#{recipe.reviews} reviews."
-    puts "\n#{@prep_time}\n#{@cook_time}\n"
-    puts "To get started, you'll need the following ingredients:\n"
+    puts "\nYou've chosen #{@name}.\n#{@description}\n"
+    puts "#{@stars} stars\t#{@reviews} reviews."
+    puts "\n#{@prep_time}\n#{@cook_time}"
+    puts "\nINGREDIENTS:"
+    #puts "\nTo get started, you'll need the following ingredients:"
     @ingredients.each do |ingredient|
-      puts "• #{ingredient}"
+      puts "    • #{ingredient}"
     end
 
-    puts "\nTo prepare:\n"
+    puts "\nDIRECTIONS:"
     @steps.each.with_index(1) do |step, i|
-      puts "#{i}. #{step}"
+      puts "    #{i}. #{step}"
     end
-    puts "\n\n\n"
+    puts
   end
 
 

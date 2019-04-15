@@ -9,11 +9,11 @@ class Cheezme::CLI
   end
 
   def list_recipes
-    puts "Choose from the list of recipes:"
+    puts "\n  Allrecipes.com Mac and Cheese recipes:\n\n"
     @@all.each.with_index(1) do |v, i|
-      puts "#{i}. #{v.stars} stars:\t#{v.name}"
+      puts "    #{i}. #{v.stars} stars:\t#{v.name}"
     end
-    puts "\n"
+    puts
   end
 
   def menu
@@ -27,13 +27,16 @@ class Cheezme::CLI
         if recipe.ingredients.nil?
           recipe.extend_attributes(Cheezme::Scraper.scrape_recipe_page(recipe.url))
         end
-        puts "\nYou've chosen #{recipe.name}.\n#{recipe.description}\n"
-        puts "#{recipe.stars} stars\t#{recipe.reviews} reviews."
         recipe.print_ingredients_and_directions
-      elsif input == 'list'
-        list_recipes
       else
-        puts 'Invalid input'
+        case input
+        when 'list'
+          list_recipes
+        when 'exit'
+          break
+        else
+          puts "Invalid input, try again.\n\n"
+        end
       end
     end
   end
