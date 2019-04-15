@@ -1,11 +1,10 @@
-class Cook.rb
+# I originally thought I needed to setup object relationships
+# This class would have tied a cook to a recipe
+# It's currently unused
+class Cheezme::Cook
 	attr_accessor :name, :recipes, :url, :about
 	@@all = []
-	# construct from url
-	# recipes should be list of recipe objects
-	# construct a recipe from its url, which should just mean
-    # passing it a scraped hash
-	
+
 	def initialize(attr_hash)
 		attr_hash.each do |key, value|
 			self.send("#{key}=", value)

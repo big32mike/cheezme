@@ -1,4 +1,3 @@
-require 'pry'
 require 'nokogiri'
 require 'open-uri'
 
@@ -13,7 +12,7 @@ class Cheezme::Scraper
       recipes << {
         name: card.css('span.fixed-recipe-card__title-link').text.to_sym,
         url: card.css('a').attr('href').text,
-        description: card.css('div.fixed-recipe-card__description').text,
+        description: card.css('div.fixed-recipe-card__description').text.strip,
         stars: card.css('div.fixed-recipe-card__ratings span').attr('data-ratingstars').text.to_f.round(2),
         reviews: card.css('span.fixed-recipe-card__reviews').children.attribute('number').text.to_i,
         #img_url: card.css('img.fixed-recipe-card__img').attr('data-original-src').text,
@@ -27,9 +26,18 @@ class Cheezme::Scraper
   def self.scrape_recipe_page(recipe_url)
     attr_hash = {}
     doc = Nokogiri::HTML(open(recipe_url))
+    prep_info = doc.css('li.prepTime__item')
+    #binding.pry
+    if prep_info[1].respond_to? :attr
+      prep_time = prep_info[1].attr('aria-label')
+      cook_time = prep_info[2].attr('aria-label')
+    end
+
     attr_hash = {
-      prep_time: doc.css('li.prepTime__item')[1].attr('aria-label'),
-      cook_time: doc.css('li.prepTime__item')[2].attr('aria-label'),
+      #prep_time: doc.css('li.prepTime__item')[1].attr('aria-label'),
+      #cook_time: doc.css('li.prepTime__item')[2].attr('aria-label'),
+      prep_time: prep_time,
+      cook_time: cook_time,
       ingredients: [],
       steps: []
     }
@@ -39,8 +47,9 @@ class Cheezme::Scraper
     end
 
     doc.css('span.recipe-directions__list--item').each do |step|
-      attr_hash[:steps] << step.text.strip
+      attr_hash[:steps] << step.text.strip.gsub(/\n\s+Watch Now$/, '')
     end
+    attr_hash[:steps].pop
     attr_hash
   end
 
@@ -48,7 +57,3 @@ class Cheezme::Scraper
   end
 
 end
-
-
-Cheezme::Scraper.scrape_recipe_index("https://www.allrecipes.com/recipes/511/main-dish/pasta/macaroni-and-cheese/")
-Cheezme::Scraper.scrape_recipe_page('https://www.allrecipes.com/recipe/223400/old-school-mac-n-cheese')

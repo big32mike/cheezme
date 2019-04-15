@@ -1,6 +1,8 @@
-require "cheezme/version"
+require_relative './cheezme/version'
+require_relative './cheezme/cli'
+require_relative './cheezme/recipe'
+require_relative './cheezme/scraper'
 
-module Cheezme
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
