@@ -29,8 +29,10 @@ class Cheezme::Recipe
   end
 
   def print_ingredients_and_directions
-    puts "\n#{@prep_time}\n#{@cook_time}"
-    puts "\nTo get started, you'll need the following ingredients:\n"
+    puts "\nYou've chosen #{recipe.name}.\n#{recipe.description}\n"
+    puts "#{recipe.stars} stars\t#{recipe.reviews} reviews."
+    puts "\n#{@prep_time}\n#{@cook_time}\n"
+    puts "To get started, you'll need the following ingredients:\n"
     @ingredients.each do |ingredient|
       puts "• #{ingredient}"
     end
