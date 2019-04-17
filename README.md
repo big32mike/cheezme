@@ -1,8 +1,7 @@
 # Cheezme
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cheezme`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Cheezme is a CLI app that returns a list of Macaroni and Cheese recipes from Allrecipes.com. We can inspect each recipe for a list of ingredients, the time to cook and prepare, reviews, and the user that submitted it.
+You will be presented with a list of recipes. Choose the number of the recipe that you'd like to get directions for. Type `list` to display the choices again, and `exit` to terminate.
 
 ## Installation
 
