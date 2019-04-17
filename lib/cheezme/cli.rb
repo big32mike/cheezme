@@ -8,9 +8,11 @@ class Cheezme::CLI
   end
 
   def list_recipes
-    puts "\n  Allrecipes.com Mac and Cheese recipes:\n\n"
+    puts Rainbow("\n  Allrecipes.com Mac and Cheese recipes:\n\n").bright.lemonchiffon
     @@all.each.with_index(1) do |v, i|
-      puts "    #{i}. #{v.stars} stars:\t#{v.name}"
+      puts Rainbow("    #{i}. ").lightblue + \
+      Rainbow("#{v.stars} stars:").send("#{v.color}") \
+      + Rainbow("\t#{v.name}").lightblue
     end
     puts
   end
@@ -18,7 +20,8 @@ class Cheezme::CLI
   def menu
     input = ''
     while input != 'exit' do
-      puts "Enter the number of the recipe you'd like to see. Type 'list' to see them again, or 'exit' to leave."
+      puts Rainbow("Enter the number of the recipe you'd like to see.").bright.dodgerblue
+      puts Rainbow("Type 'list' to see them again, or 'exit' to leave.").bright.dodgerblue
       input = gets.downcase.strip
 
       if input.to_i > 0 and input.to_i <= @@all.size

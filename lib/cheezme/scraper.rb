@@ -23,7 +23,8 @@ class Cheezme::Scraper
     attr_hash = {}
     doc = Nokogiri::HTML(open(recipe_url))
     prep_info = doc.css('li.prepTime__item')
-    if prep_info[1].respond_to? :attr
+    if prep_info[1].respond_to? :attr # Recipe #7 is wonky on first or second scrape
+      # It usually works after a retry or two
       prep_time = prep_info[1].attr('aria-label')
       cook_time = prep_info[2].attr('aria-label')
     end
