@@ -1,5 +1,7 @@
 class Cheezme::CLI
   @@all = []
+  @@url = 'https://www.allrecipes.com/recipes/509/main-dish/pasta/macaroni-and-cheese/'
+
 
   def call
     scrape_recipes
@@ -24,7 +26,7 @@ class Cheezme::CLI
       puts Rainbow("Type 'list' to see them again, or 'exit' to leave.").bright.dodgerblue
       input = gets.downcase.strip
 
-      if input.to_i > 0 and input.to_i <= @@all.size
+      if input.to_i.between?(1, @@all.size)
         recipe = @@all[input.to_i - 1]
         if recipe.ingredients.nil? or recipe.ingredients == []
           recipe.extend_attributes(Cheezme::Scraper.scrape_recipe_page(recipe.url))
@@ -46,8 +48,7 @@ class Cheezme::CLI
   end
 
   def scrape_recipes
-    url = 'https://www.allrecipes.com/recipes/509/main-dish/pasta/macaroni-and-cheese/'
-    Cheezme::Recipe.create_from_collection(Cheezme::Scraper.scrape_recipe_index(url))
+    Cheezme::Recipe.create_from_collection(Cheezme::Scraper.scrape_recipe_index(@@url))
     @@all = Cheezme::Recipe.all
   end
 
