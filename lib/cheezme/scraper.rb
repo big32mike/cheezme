@@ -1,6 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-
 class Cheezme::Scraper
 
 
@@ -10,13 +7,12 @@ class Cheezme::Scraper
     recipes = []
     cards.each do |card|
       recipes << {
-        name: card.css('span.fixed-recipe-card__title-link').text.to_sym,
+        name: card.css('span.fixed-recipe-card__title-link').text,
         url: card.css('a').attr('href').text,
         description: card.css('div.fixed-recipe-card__description').text.strip,
         stars: card.css('div.fixed-recipe-card__ratings span').attr('data-ratingstars').text.to_f.round(2),
         reviews: card.css('span.fixed-recipe-card__reviews').children.attribute('number').text.to_i,
-        #img_url: card.css('img.fixed-recipe-card__img').attr('data-original-src').text,
-        cook: card.css('ul.cook-submitter-info li h4').text.gsub(/^By\ /, ''),
+        cook: card.css('ul.cook-submitter-info li h4').text,
         cook_url: card.css('div.fixed-recipe-card__profile a').attr('href').text
     }
     end

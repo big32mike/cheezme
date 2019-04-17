@@ -28,7 +28,7 @@ class Cheezme::Recipe
   end
 
   def print_ingredients_and_directions
-    puts "\nYou've chosen #{@name}.\n#{@description}\n"
+    puts "\nYou've chosen #{@name} #{@cook}.\n#{@description}\n"
     puts "#{@stars} stars\t#{@reviews} reviews."
     puts "\n#{@prep_time}\n#{@cook_time}"
     puts "\nINGREDIENTS:"

@@ -34,4 +34,13 @@
 * I should ask the user if they would like to return to the list, or break once they've viewed a recipe
 * When scraping directions, there was an extra item appended to each array.
 
+### Blog post outline
+* planning
+ - how I didn't plan, and procrastinated
+ - hung out in study groups without
+* getting started
+ - then did things in the reverse order
+ - trying to watch Avi's videos while distracted -> scraping logic -> objects and relations -> watching Avi's videos -> CLI interface
+ - try to add github hosted code snippets to break up paragraphs
+
 ### Scratch Pad

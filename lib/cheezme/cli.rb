@@ -5,7 +5,6 @@ class Cheezme::CLI
     scrape_recipes
     list_recipes
     menu
-    goodbye
   end
 
   def list_recipes
@@ -19,25 +18,23 @@ class Cheezme::CLI
   def menu
     input = ''
     while input != 'exit' do
-      puts "Enter the number of the recipe you'd like to see."
-      puts "Type 'list' to see them again, or 'exit' to leave."
+      puts "Enter the number of the recipe you'd like to see. Type 'list' to see them again, or 'exit' to leave."
       input = gets.downcase.strip
+
       if input.to_i > 0 and input.to_i <= @@all.size
         recipe = @@all[input.to_i - 1]
         if recipe.ingredients.nil? or recipe.ingredients == []
           recipe.extend_attributes(Cheezme::Scraper.scrape_recipe_page(recipe.url))
         end
         recipe.print_ingredients_and_directions
+      elsif input == 'list'
+        list_recipes
+      elsif input == 'exit'
+        goodbye
       else
-        case input
-        when 'list'
-          list_recipes
-        when 'exit'
-          break
-        else
-          puts "Invalid input, try again.\n\n"
-        end
+        puts "Invalid input, try again.\n\n"
       end
+
     end
   end
 
