@@ -10,6 +10,7 @@ class Cheezme::CLI
   end
 
   def list_recipes
+    system "clear"
     puts Rainbow("\n  Allrecipes.com Mac and Cheese recipes:\n\n").bright.lemonchiffon
     @@all.each.with_index(1) do |v, i|
       puts Rainbow("    #{i}. ").lightblue + \
